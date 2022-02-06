@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// ignore: camel_case_types
 class Home_Pages extends StatelessWidget {
   const Home_Pages({Key? key}) : super(key: key);
 
@@ -7,11 +8,16 @@ class Home_Pages extends StatelessWidget {
   Widget build(BuildContext context) {
     int days = 20;
     var name = "Flutter";
-    return MaterialApp(
-        home: Material(
-      child: Center(
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Catalog App"),
+      ),
+      body: Center(
+        child: Center(
           child: Text("$days Days Of $name???")
           ),
-    ));
+      ),
+      drawer: Drawer(),
+    );
   }
 }
