@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:thirty_days_program/widgets/drawer.dart';
 
 // ignore: camel_case_types
 class Home_Pages extends StatelessWidget {
@@ -17,7 +18,7 @@ class Home_Pages extends StatelessWidget {
           child: Text("$days Days Of $name???")
           ),
       ),
-      drawer: Drawer(),
+      drawer: const MyDrawer(),
     );
   }
 }
