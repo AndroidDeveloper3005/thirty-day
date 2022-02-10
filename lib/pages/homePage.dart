@@ -14,9 +14,7 @@ class Home_Pages extends StatelessWidget {
         title: Text("Catalog App"),
       ),
       body: Center(
-        child: Center(
-          child: Text("$days Days Of $name???")
-          ),
+        child: Center(child: Text("$days Days Of $name???")),
       ),
       drawer: const MyDrawer(),
     );
