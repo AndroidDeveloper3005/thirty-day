@@ -39,11 +39,14 @@ class _Home_PagesState extends State<Home_Pages> {
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: (CatalogModel.items != null && CatalogModel.items.isNotEmpty)
-            ? ListView.builder(
+            ? GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2),
+                itemBuilder: (context, index) {
+                  final item = CatalogModel.items[index];
+                  return GridTile(child: Image.network(item.image));
+                },
                 itemCount: CatalogModel.items.length,
-                itemBuilder: (context, index) => ItemWidget(
-                  items: CatalogModel.items[index],
-                ),
               )
             : const Center(
                 child: CircularProgressIndicator(color: Colors.red),
