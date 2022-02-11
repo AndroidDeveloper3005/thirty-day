@@ -1,13 +1,7 @@
+import 'dart:convert';
+
 class CatalogModel {
-  static final items = [
-    Item(
-        id: 1,
-        name: "Xiaomi Redmi 9",
-        desc:
-            "Android 10, MIUI 12, 6.53 inc IPS LCD, expandable memory 256 GB, RAM 6 GB, ROM 128 GB, Battery 5000mAh ,first arrival(December-2021)",
-        price: " 15999TK",
-        image: "https://m.media-amazon.com/images/I/51oT5k+XRrS._AC_SX522_.jpg")
-  ];
+  static List<Item> items = [];
 }
 
 class Item {
@@ -23,4 +17,70 @@ class Item {
       required this.desc,
       required this.price,
       required this.image});
+
+  Item copyWith({
+    int? id,
+    String? name,
+    String? desc,
+    String? price,
+    String? image,
+  }) {
+    return Item(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      desc: desc ?? this.desc,
+      price: price ?? this.price,
+      image: image ?? this.image,
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'name': name,
+      'desc': desc,
+      'price': price,
+      'image': image,
+    };
+  }
+
+  factory Item.fromMap(Map<String, dynamic> map) {
+    return Item(
+      id: map['id'],
+      name: map['name'],
+      desc: map['desc'],
+      price: map['price'],
+      image: map['image'],
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory Item.fromJson(String source) => Item.fromMap(json.decode(source));
+
+  @override
+  String toString() {
+    return 'Item(id: $id, name: $name, desc: $desc, price: $price, image: $image)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is Item &&
+        other.id == id &&
+        other.name == name &&
+        other.desc == desc &&
+        other.price == price &&
+        other.image == image;
+  }
+
+  @override
+  int get hashCode {
+    return id.hashCode ^
+        name.hashCode ^
+        desc.hashCode ^
+        price.hashCode ^
+        image.hashCode;
+  }
 }

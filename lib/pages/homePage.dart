@@ -20,27 +20,34 @@ class _Home_PagesState extends State<Home_Pages> {
   }
 
   loadData() async {
+    await Future.delayed(const Duration(seconds: 3));
+
     var catalogJSON = await rootBundle.loadString("assets/files/products.json");
     var decodedData = jsonDecode(catalogJSON);
     var productData = decodedData["products"];
-    //print(decodedData);
+    CatalogModel.items =
+        List.from(productData).map<Item>((item) => Item.fromMap(item)).toList();
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
-    int days = 20;
-    var name = "Flutter";
     return Scaffold(
       appBar: AppBar(
-        title: Text("Catalog App"),
+        title: const Text("Catalog App"),
       ),
-      body: ListView.builder(
-        itemCount: CatalogModel.items.length,
-        itemBuilder: (context, index) {
-          return ItemWidget(
-            items: CatalogModel.items[index],
-          );
-        },
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: (CatalogModel.items != null && CatalogModel.items.isNotEmpty)
+            ? ListView.builder(
+                itemCount: CatalogModel.items.length,
+                itemBuilder: (context, index) => ItemWidget(
+                  items: CatalogModel.items[index],
+                ),
+              )
+            : const Center(
+                child: CircularProgressIndicator(color: Colors.red),
+              ),
       ),
       drawer: const MyDrawer(),
     );
