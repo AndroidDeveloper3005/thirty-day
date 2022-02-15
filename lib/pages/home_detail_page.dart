@@ -16,54 +16,61 @@ class HomeDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-      appBar: AppBar(),
-       backgroundColor: MyTheme.creamColor,
-       bottomNavigationBar: Container(
-         color: Colors.white,
-         child: ButtonBar(
-                  alignment: MainAxisAlignment.spaceBetween,
-                  buttonPadding: EdgeInsets.zero,
-                  children: ["\$${catalogItem.price}".text.bold.xl3.red800.make(),
-                  ElevatedButton(
-                    onPressed: (){},
-                    style: ButtonStyle(
-                      backgroundColor: 
-                      MaterialStateProperty.all(MyTheme.darkBluishColor),
-                      shape: MaterialStateProperty.all(StadiumBorder())
-                      ),
-                     child: "Buy".text.make()
-                     ).wh(100, 50)
-                  ]
-                  
-                ).p32(),
-       ),
-
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+      ),
+      backgroundColor: MyTheme.creamColor,
+      bottomNavigationBar: Container(
+        color: Colors.white,
+        child: ButtonBar(
+            alignment: MainAxisAlignment.spaceBetween,
+            buttonPadding: EdgeInsets.zero,
+            children: [
+              "\$${catalogItem.price}".text.bold.xl3.red800.make(),
+              ElevatedButton(
+                      onPressed: () {},
+                      style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(
+                              MyTheme.darkBluishColor),
+                          shape: MaterialStateProperty.all(StadiumBorder())),
+                      child: "Add to Cart".text.make())
+                  .wh(120, 50)
+            ]).p32(),
+      ),
       body: SafeArea(
         bottom: false,
         child: Column(
           children: [
             Hero(
                     tag: Key(catalogItem.id.toString()),
-                    child: Image.network(catalogItem.image)).h32(context).p1(),
-          
+                    child: Image.network(catalogItem.image))
+                .h32(context)
+                .p1(),
             Expanded(
                 child: VxArc(
-                  height: 30.0,
-                  arcType: VxArcType.CONVEY,
-                  edge: VxEdge.TOP,
-                  child: Container(
-                    color: Colors.white,
-                    width: context.screenWidth,
-                    child: Column(
-                      children: [
-                        catalogItem.name.text.bold.xl4.color(MyTheme.darkBluishColor).make(),
-                        catalogItem.desc.text.textStyle(context.captionStyle!).xl.make(),
-              5.heightBox,
-                      ],
-                    ).py64(),
-            ),
-                )),
+              height: 30.0,
+              arcType: VxArcType.CONVEY,
+              edge: VxEdge.TOP,
+              child: Container(
+                color: Colors.white,
+                width: context.screenWidth,
+                child: Column(
+                  children: [
+                    catalogItem.name.text.bold.xl4
+                        .color(MyTheme.darkBluishColor)
+                        .make(),
+                    catalogItem.desc.text
+                        .textStyle(context.captionStyle!)
+                        .xl
+                        .make(),
+                    5.heightBox,
+                    "Laborum veniam ullamco dolore et ea dolor magna velit aliqua. Labore dolor laborum nostrud excepteur. Minim qui magna pariatur id amet pariatur veniam ipsum irure elit sit. Laboris dolor sint ea ea anim aliquip ut sit excepteur esse qui excepteur. Exercitation aliquip proident aliqua dolor officia irure ad ut est fugiat pariatur nostrud sit. Consectetur magna nostrud incididunt ut magna ullamco sunt qui sunt culpa."
+                    .text.textStyle(context.captionStyle!)
+                    .make().p16()
+                  ],
+                ).py64(),
+              ),
+            )),
           ],
         ),
       ),
