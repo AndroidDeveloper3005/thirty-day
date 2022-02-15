@@ -16,7 +16,7 @@ class CatalogImage extends StatelessWidget {
         .box
         .rounded
         .p3
-        .color(MyTheme.creamColor)
+        .color(context.canvasColor)
         .make()
         .p8()
         .w24(context);
