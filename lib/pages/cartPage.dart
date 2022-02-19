@@ -10,20 +10,14 @@ class CartPage extends StatelessWidget {
       backgroundColor: context.canvasColor,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        title: "Cart".text.make(),
+        title: "Cart".text.color(context.accentColor).make(),
       ),
       body: Column(
-        children: [
-           _CartList().p32().expand(),
-         const Divider(),
-         _CartTotal()
-        ],
+        children: [_CartList().p32().expand(), const Divider(), _CartTotal()],
       ),
     );
   }
-
 }
-
 
 class _CartTotal extends StatelessWidget {
   @override
@@ -36,7 +30,10 @@ class _CartTotal extends StatelessWidget {
           "\$9999".text.xl5.color(context.theme.accentColor).make(),
           30.widthBox,
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: "Buying Not Supported Yet.".text.make()));
+            },
             style: ButtonStyle(
                 backgroundColor:
                     MaterialStateProperty.all(context.theme.buttonColor)),
@@ -47,7 +44,6 @@ class _CartTotal extends StatelessWidget {
     );
   }
 }
-
 
 class _CartList extends StatefulWidget {
   @override
@@ -70,4 +66,3 @@ class __CartListState extends State<_CartList> {
     );
   }
 }
-
