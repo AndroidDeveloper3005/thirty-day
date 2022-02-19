@@ -15,7 +15,7 @@ class Item {
   final int id;
   final String name;
   final String desc;
-  final String price;
+  final num price;
   final String image;
 
   Item(
@@ -29,14 +29,14 @@ class Item {
     int? id,
     String? name,
     String? desc,
-    String? price,
+    num? price,
     String? image,
   }) {
     return Item(
       id: id ?? this.id,
       name: name ?? this.name,
       desc: desc ?? this.desc,
-      price: price ?? this.price,
+      price: price?? this.price,
       image: image ?? this.image,
     );
   }
